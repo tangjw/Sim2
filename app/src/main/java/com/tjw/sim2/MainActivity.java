@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private long mTimeMillis;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        System.out.println("MainActivity onDestroy");
+        System.out.println(System.currentTimeMillis() - mTimeMillis);
         super.onDestroy();
     }
 
@@ -27,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
             public void okClick() {
                 Toast.makeText(MainActivity.this, "删除成功!", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
+                mTimeMillis = System.currentTimeMillis();
+                finish();
             }
 
             @Override
@@ -35,4 +41,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    
+    
 }
